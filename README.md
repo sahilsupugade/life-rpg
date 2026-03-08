@@ -16,7 +16,7 @@ A mobile-first, gamified self-improvement web app that turns your daily habits i
 
 ## 🛠 Tech Stack
 
-- **React 18** + Vite
+- **React 19** + Vite
 - **Tailwind CSS** for styling
 - **Recharts** for the XP progress graph
 - **Framer Motion** for all animations

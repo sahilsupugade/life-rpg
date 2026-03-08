@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { STATUS_COLORS } from '../constants/defaults'
 
@@ -9,7 +9,6 @@ const STATUS_BG = {
 }
 
 export default function TaskCard({ task, status, onCycle, onDelete }) {
-  const [showDelete, setShowDelete] = useState(false)
   const info = STATUS_COLORS[status]
 
   return (
@@ -22,7 +21,6 @@ export default function TaskCard({ task, status, onCycle, onDelete }) {
       animate={{ borderColor: info.hex }}
       transition={{ duration: 0.3 }}
       onClick={() => onCycle(task.id)}
-      onContextMenu={(e) => { e.preventDefault(); setShowDelete(v => !v) }}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">

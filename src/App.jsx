@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import { DEFAULT_TASKS, STATUS } from './constants/defaults'
-import { calcXPFromStatuses, calcLevel } from './utils/xpCalculator'
+import { calcLevel } from './utils/xpCalculator'
+import { useXP } from './hooks/useXP'
 import { getTodayKey } from './utils/dateUtils'
 import Header from './components/Header'
 import TaskList from './components/TaskList'
@@ -24,18 +25,8 @@ export default function App() {
   const todayStatuses = history[todayKey] || {}
   const getTaskStatus = (taskId) => todayStatuses[taskId] ?? STATUS.MISSED
 
-  // Calculate XP from ALL days' completed tasks (today's counts too)
-  // XP = sum of all green statuses across all history days
-  const totalXP = React.useMemo(() => {
-    let xp = 0
-    for (const [, dayStatuses] of Object.entries(history)) {
-      for (const status of Object.values(dayStatuses)) {
-        if (status === STATUS.COMPLETED) xp += 20
-      }
-    }
-    return xp
-  }, [history])
-
+  // Calculate XP and level from all history using the shared hook
+  const { totalXP } = useXP(history)
   const currentLevel = calcLevel(totalXP)
   const prevLevelRef = React.useRef(currentLevel)
 
@@ -48,7 +39,7 @@ export default function App() {
   }, [currentLevel])
 
   const cycleStatus = useCallback((taskId) => {
-    const current = getTaskStatus(taskId)
+    const current = todayStatuses[taskId] ?? STATUS.MISSED
     const next = (current + 1) % 3
 
     // XP popup
@@ -72,7 +63,7 @@ export default function App() {
         }
       }
     })
-  }, [todayKey, getTaskStatus, setHistory])
+  }, [todayKey, todayStatuses, setHistory])
 
   const addTask = useCallback((name) => {
     const id = 'task-' + Date.now()

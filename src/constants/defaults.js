@@ -1,3 +1,15 @@
+export const STATUS = {
+  MISSED: 0,
+  PARTIAL: 1,
+  COMPLETED: 2,
+}
+
+export const STATUS_COLORS = {
+  0: { label: 'Missed',    emoji: '🔴', hex: '#ef4444' },
+  1: { label: 'Partial',   emoji: '🟡', hex: '#eab308' },
+  2: { label: 'Completed', emoji: '🟢', hex: '#22c55e' },
+}
+
 export const DEFAULT_CATEGORIES = [
   { id: 'learning',     name: 'Learning',     weight: 1.2, color: '#6366f1' },
   { id: 'fitness',      name: 'Fitness',      weight: 1.0, color: '#22c55e' },

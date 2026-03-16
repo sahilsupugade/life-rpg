@@ -118,18 +118,21 @@ export const useXPStore = create(
       },
 
       addTask(task) {
-        const id = `task-${Date.now()}`
-        set(state => ({ tasks: [...state.tasks, { ...task, id }] }))
+        const state = get()
+        const id = generateId()
+        set({ tasks: [...state.tasks, { ...task, id }] })
+        return id
       },
 
       addCategory(category) {
-        const id = `cat-${Date.now()}`
-        set(state => ({
+        const state = get()
+        const id = generateId()
+        set({
           categories: [
             ...state.categories,
             { ...category, id, currentXP: 0, level: 1 },
           ],
-        }))
+        })
       },
 
       /** Remove a task and all its effort logs, recalculate XP. */

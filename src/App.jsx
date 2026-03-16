@@ -9,6 +9,7 @@ import AddTaskModal from './components/AddTaskModal'
 import SettingsPanel from './components/SettingsPanel'
 import RewardOverlay from './components/RewardOverlay'
 import XPFloaters from './components/XPFloaters'
+import TaskList from './components/TaskList'
 import { ListPlus } from 'lucide-react'
 
 export default function App() {
@@ -43,6 +44,8 @@ export default function App() {
           <ListPlus size={18} />
           <span className="text-sm font-semibold">Add Custom Task</span>
         </button>
+
+        <TaskList />
 
         <AnalyticsPanel />
         <AchievementsPanel />

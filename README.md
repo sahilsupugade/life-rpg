@@ -64,7 +64,7 @@ npm run preview
 | Medium     | ×1.5       |
 | Hard       | ×2.0       |
 
-**Example:** 60 minutes of Running (Hard ×1.5) in Fitness (Weight ×1.0) = **90 XP**
+**Example:** 60 minutes of Running (Medium ×1.5) in Fitness (Weight ×1.0) = **90 XP**
 
 **Leveling:** Level = ⌊0.1 × √XP⌋ + 1
 

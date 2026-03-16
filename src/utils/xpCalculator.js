@@ -24,6 +24,17 @@ export function calcXPForLevel(level) {
 }
 
 /**
+ * XP earned within the current level (0–100 range for the simple model).
+ */
+export function calcXPInCurrentLevel(totalXP) {
+  const level = calcLevel(totalXP)
+  const xpCurrent = calcXPForLevel(level)
+  const xpNext = calcXPForLevel(level + 1)
+  const range = xpNext - xpCurrent
+  return range > 0 ? Math.round(((totalXP - xpCurrent) / range) * 100) : 0
+}
+
+/**
  * Returns level, xp thresholds and 0–1 progress within the current level.
  */
 export function calcXPProgress(totalXP) {

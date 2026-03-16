@@ -1,10 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Zap } from 'lucide-react'
+import { Zap, Settings } from 'lucide-react'
 import { useXPStore } from '../store/xpStore'
 import { calcXPProgress } from '../utils/xpCalculator'
 
-export default function CharacterHeader() {
+export default function CharacterHeader({ onOpenSettings }) {
   const totalXP = useXPStore(s => s.totalXP)
   const { level, xpCurrentLevel, xpNextLevel, progress } = calcXPProgress(totalXP)
 
@@ -23,17 +23,28 @@ export default function CharacterHeader() {
             <p className="text-xs text-slate-500 mt-0.5">Effort Quantification Engine</p>
           </div>
 
-          {/* Level badge */}
-          <motion.div
-            key={level}
-            initial={{ scale: 1.4, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="flex flex-col items-center justify-center w-16 h-16 rounded-full border-2 border-violet-500 bg-violet-950/60 shadow-[0_0_16px_rgba(139,92,246,0.5)]"
-          >
-            <span className="text-xs text-violet-300 font-semibold leading-none">LVL</span>
-            <span className="text-2xl font-black text-white leading-none">{level}</span>
-          </motion.div>
+          <div className="flex items-center gap-3">
+            {/* Settings button */}
+            <button
+              onClick={onOpenSettings}
+              className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors"
+              aria-label="Settings"
+            >
+              <Settings size={18} />
+            </button>
+
+            {/* Level badge */}
+            <motion.div
+              key={level}
+              initial={{ scale: 1.4, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              className="flex flex-col items-center justify-center w-16 h-16 rounded-full border-2 border-violet-500 bg-violet-950/60 shadow-[0_0_16px_rgba(139,92,246,0.5)]"
+            >
+              <span className="text-xs text-violet-300 font-semibold leading-none">LVL</span>
+              <span className="text-2xl font-black text-white leading-none">{level}</span>
+            </motion.div>
+          </div>
         </div>
 
         {/* XP bar */}

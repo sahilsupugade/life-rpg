@@ -8,8 +8,22 @@
 
 body {
   margin: 0;
-  background-color: #0f0f1a;
+  background-color: #08080f;
   color: white;
   font-family: 'Segoe UI', system-ui, sans-serif;
   min-height: 100vh;
 }
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #0a0a14; }
+::-webkit-scrollbar-thumb { background: #3730a3; border-radius: 4px; }
+
+/* Number input: hide spin buttons */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] { -moz-appearance: textfield; }
+

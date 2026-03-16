@@ -21,10 +21,13 @@
   },
   "homepage": "https://github.com/sahilsupugade/life-rpg#readme",
   "dependencies": {
+    "canvas-confetti": "^1.9.4",
     "framer-motion": "^12.35.1",
+    "lucide-react": "^0.577.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "recharts": "^3.8.0"
+    "recharts": "^3.8.0",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
